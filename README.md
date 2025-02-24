@@ -103,7 +103,7 @@ git branch -M main
 
 Adicionar um repositório remoto ao repositório local.
 ```
-git remote add origin https://github.com/celkecursos/tutorial-aula-crud-react19-typescript.git
+git remote add origin https://github.com/celkecursos/tutorial-como-usar-laravel-12.git
 ```
 
 Enviar os commits locais para um repositório remoto.
