@@ -8,6 +8,17 @@ use Exception;
 
 class UserController extends Controller
 {
+    // Listar os usuários
+    public function index()
+    {
+        // Recuperar os registros do banco dados
+        $users = User::orderByDesc('id')->paginate(2);
+
+        // Carregar a VIEW
+        return view('users.index', ['users' => $users]);
+
+    }
+
     // Carregar o formulário cadastrar novo usuário
     public function create()
     {
@@ -31,7 +42,6 @@ class UserController extends Controller
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user.create')->with('success', 'Usuário cadastrado com sucesso!');
-
         } catch (Exception $e) {
 
             // Redirecionar o usuário, enviar a mensagem de erro
