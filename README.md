@@ -19,7 +19,16 @@ git clone https://github.com/celkecursos/tutorial-como-usar-laravel-12.git .
 ```
 
 - Duplicar o arquivo ".env.example" e renomear para ".env".
-- Alterar no arquivo .env as credenciais do banco de dados.
+
+Alterar no arquivo .env as credenciais do banco de dados.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nome_do_banco_de_dados
+DB_USERNAME=usuario_do_banco_de_dados
+DB_PASSWORD=senha_do_usuario_do_banco_de_dados
+```
 
 Instalar as dependências do PHP
 ```
