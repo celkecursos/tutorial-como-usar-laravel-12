@@ -26,14 +26,14 @@ Iniciar o projeto criado com Laravel
 php artisan serve
 ```
 
+Executar as migration para criar a base de dados e as tabelas.
+```
+php artisan migrate
+```
+
 Acessar o conteúdo padrão do Laravel
 ```
 http://127.0.0.1:8000
-```
-
-Instalar as dependências do Node.js
-```
-npm install
 ```
 
 ## Sequência para criar o projeto
