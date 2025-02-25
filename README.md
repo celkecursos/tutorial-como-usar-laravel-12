@@ -104,6 +104,14 @@ Executar as bibliotecas Node.js.
 npm run dev
 ```
 
+Criar um arquivo Request com validações do formulário.
+```
+php artisan make:request NomeDoRequest
+```
+```
+php artisan make:request UserRequest
+```
+
 ## Como enviar o projeto para o GitHub.
 
 Inicializar um novo repositorio GIT.

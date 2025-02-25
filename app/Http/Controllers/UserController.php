@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
     }
 
     // Cadastrar no banco de dados o novo registro
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         // dd($request);
 
