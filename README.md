@@ -50,7 +50,7 @@ Executar as migration para criar a base de dados e as tabelas.
 php artisan migrate
 ```
 
-Iniciar o projeto criado com Laravel
+Iniciar o projeto criado com Laravel.
 ```
 php artisan serve
 ```
@@ -120,6 +120,8 @@ php artisan make:request NomeDoRequest
 ```
 php artisan make:request UserRequest
 ```
+
+Traduzir para português [Módulo pt-BR](https://github.com/lucascudo/laravel-pt-BR-localization).
 
 ## Como enviar o projeto para o GitHub.
 
