@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -46,6 +47,70 @@ class UserController extends Controller
 
             // Redirecionar o usuário, enviar a mensagem de erro
             return back()->withInput()->with('error', 'Usuário não cadastrado!');
+        }
+    }
+
+    // Carregar o formulário editar usuário
+    public function edit(User $user)
+    {
+        // Carregar a VIEW
+        return view('users.edit', ['user' => $user]);
+    }
+
+    // Editar no banco de dados o usuário
+    public function update(UserRequest $request, User $user)
+    {
+
+        try{
+            // Editar as informações do registro no banco de dados
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('user.edit', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
+
+        }catch (Exception $e){
+            
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Usuário não editado!');
+        }
+    }
+
+    // Carregar o formulário editar senha do usuário
+    public function editPassword(User $user)
+    {
+
+        // Carregar a VIEW
+        return view('users.editPassword', ['user' => $user]);
+    }
+
+    // Editar no banco de dados a senha do usuário
+    public function updatePassword(Request $request, User $user)
+    {
+
+        // Validar o formulário
+        $request->validate([
+            'password' => 'required|min:6',
+        ], [
+            'password.required' => 'O campo senha é obrigatório.',
+            'password.min' => 'A senha deve ter pelo menos :min caracteres.',
+        ]);
+
+        try {
+
+            // Editar as informações do registro no banco de dados
+            $user->update([
+                'password' => $request->password,
+            ]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('user.edit-password', ['user' => $user->id])->with('success', 'Senha do usuário editada com sucesso!');
+        } catch (Exception $e) {
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Senha do usuário não editada!');
         }
     }
 }
