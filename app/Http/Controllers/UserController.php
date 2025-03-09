@@ -20,6 +20,13 @@ class UserController extends Controller
 
     }
 
+    // Detalhes do usuario
+    public function show(User $user)
+    {
+        // Carregar a VIEW
+        return view('users.show', ['user' => $user]);
+    }
+
     // Carregar o formulário cadastrar novo usuário
     public function create()
     {
@@ -35,14 +42,14 @@ class UserController extends Controller
         try {
 
             // Cadastrar no banco de dados na tabela usuários
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('user.create')->with('success', 'Usuário cadastrado com sucesso!');
+            return redirect()->route('user.show', ['user' => $user->id])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
 
             // Redirecionar o usuário, enviar a mensagem de erro
@@ -69,7 +76,7 @@ class UserController extends Controller
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('user.edit', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
+            return redirect()->route('user.show', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
 
         }catch (Exception $e){
             
@@ -106,7 +113,7 @@ class UserController extends Controller
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('user.edit-password', ['user' => $user->id])->with('success', 'Senha do usuário editada com sucesso!');
+            return redirect()->route('user.show', ['user' => $user->id])->with('success', 'Senha do usuário editada com sucesso!');
         } catch (Exception $e) {
 
             // Redirecionar o usuário, enviar a mensagem de erro
