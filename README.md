@@ -123,6 +123,11 @@ php artisan make:request UserRequest
 
 Traduzir para português [Módulo pt-BR](https://github.com/lucascudo/laravel-pt-BR-localization).
 
+Instalar a biblioteca para apresentar o alerta personalizado.
+```
+npm install sweetalert2
+```
+
 ## Como enviar o projeto para o GitHub.
 
 Inicializar um novo repositorio GIT.
