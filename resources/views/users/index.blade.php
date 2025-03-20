@@ -27,13 +27,15 @@
                             <td class="table-cell">{{ $user->email }}</td>
                             <td class="table-actions">
                                 <a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn-primary">Visualizar</a>
-                                <a href="{{ route('user.edit', ['user' => $user->id ])}}" class="btn-warning">Editar</a>
-                                  
-                                <form action="{{ route('user.destroy', ['user' => $user->id ]) }}" method="POST">
+                                <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn-warning">Editar</a>
+
+                                <form id="delete-form-{{ $user->id }}"
+                                    action="{{ route('user.destroy', ['user' => $user->id]) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn-danger" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
-                                </form>           
+                                    <button type="button" class="btn-danger"
+                                        onclick="confirmDelete({{ $user->id }})">Apagar</button>
+                                </form>
 
                             </td>
                         </tr>
@@ -43,7 +45,7 @@
                         </div>
                     @endforelse
                 </tbody>
-            </table>            
+            </table>
         </div>
 
         <div class="pagination">
