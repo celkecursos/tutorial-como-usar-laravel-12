@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,6 @@ class UserController extends Controller
 
         // Carregar a VIEW
         return view('users.index', ['users' => $users]);
-
     }
 
     // Detalhes do usuario
@@ -68,7 +68,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
 
-        try{
+        try {
             // Editar as informações do registro no banco de dados
             $user->update([
                 'name' => $request->name,
@@ -77,9 +77,8 @@ class UserController extends Controller
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user.show', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
+        } catch (Exception $e) {
 
-        }catch (Exception $e){
-            
             // Redirecionar o usuário, enviar a mensagem de erro
             return back()->withInput()->with('error', 'Usuário não editado!');
         }
@@ -124,16 +123,27 @@ class UserController extends Controller
     // Excluir o usuário do banco de dados
     public function destroy(User $user)
     {
-        try{
+        try {
             // Excluir o registro do banco de dados
             $user->delete();
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user.index')->with('success', 'Usuário excluído com sucesso!');
-        }catch (Exception $e) {
+        } catch (Exception $e) {
 
             // Redirecionar o usuário, enviar a mensagem de erro
             return redirect()->route('user.index')->with('error', 'Usuário não excluído!');
         }
+    }
+
+    // Gerar PDF
+    public function generatePdf(User $user)
+    {
+
+        // Carregar a string com o HTML/conteúdo e determinar a orientação e o tamanho do arquivo
+        $pdf = Pdf::loadView('users.genenate-pdf', ['user' => $user])->setPaper('a4', 'portrait');
+
+        // Fazer o download do arquivo
+        return $pdf->download('view_user.pdf');
     }
 }

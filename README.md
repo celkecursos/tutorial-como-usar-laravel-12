@@ -128,6 +128,11 @@ Instalar a biblioteca para apresentar o alerta personalizado.
 npm install sweetalert2
 ```
 
+Instalar a biblioteca para gerar PDF.
+```
+composer require barryvdh/laravel-dompdf
+```
+
 ## Como enviar o projeto para o GitHub.
 
 Inicializar um novo repositorio GIT.
