@@ -33,7 +33,7 @@ DB_PASSWORD=senha_do_usuario_do_banco_de_dados
 - Para a funcionalidade enviar e-mail funcionar, necessário alterar as credenciais do servidor de envio de e-mail no arquivo .env.
 - Utilizar o servidor fake durante o desenvolvimento: [Acessar envio gratuito de e-mail](https://mailtrap.io?ref=celke)
 - Utilizar o servidor Iagente no ambiente de produção: [Acessar envio gratuito de e-mail](https://login.iagente.com.br/solicitacao-conta-smtp/origin/celke)
-- Configurar DNS da Iagente: [Acessar o tutorial](https://celke.com.br/artigo/como-configurar-o-dns-da-iagente-na-vps-da-hostinger)
+- Configurar DNS da Iagente na [Hostinger](https://www.hostinger.com.br/referral?REFERRALCODE=1CESARNICOL13): [Acessar o tutorial](https://celke.com.br/artigo/como-configurar-o-dns-da-iagente-na-vps-da-hostinger)
 ```
 # MAIL_MAILER=smtp
 # MAIL_SCHEME=null

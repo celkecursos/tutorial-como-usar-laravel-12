@@ -126,12 +126,12 @@
     /****** Início Botões ******/
     /* Botão azul */
     .btn-primary {
-        @apply bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors;
+        @apply p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors;
     }
 
     /* Botão azul claro */
     .btn-info {
-        @apply bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600 transition-colors;
+        @apply p-2 bg-cyan-500 text-white rounded-md hover:bg-cyan-600 transition-colors;
     }
 
     /* Botão verde */

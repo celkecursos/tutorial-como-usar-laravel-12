@@ -13,13 +13,30 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     // Listar os usuários
-    public function index()
+    public function index(Request $request)
     {
         // Recuperar os registros do banco dados
-        $users = User::orderByDesc('id')->paginate(10);
+        // $users = User::orderByDesc('id')->paginate(10);
+        $users = User::when(
+            $request->filled('name'),
+            fn($query) =>
+            $query->whereLike('name', '%' . $request->name . '%')
+        )
+            ->when(
+                $request->filled('email'),
+                fn($query) => 
+                $query->whereLike('email', '%' . $request->email . '%')
+            )
+            ->orderByDesc('id')
+            ->paginate(10)
+            ->withQueryString();
 
         // Carregar a VIEW
-        return view('users.index', ['users' => $users]);
+        return view('users.index', [
+            'users' => $users,
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
     }
 
     // Detalhes do usuario
@@ -155,13 +172,12 @@ class UserController extends Controller
             Mail::to($user->email)->send(new UserPdfMail($pdfPath, $user));
 
             // Remover o arquivo após o envio do e-mail
-            if(file_exists($pdfPath)){
+            if (file_exists($pdfPath)) {
                 unlink($pdfPath);
             }
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user.show', ['user' => $user->id])->with('success', 'E-mail enviado com sucesso!');
-
         } catch (Exception $e) {
 
             // Redirecionar o usuário, enviar a mensagem de erro
