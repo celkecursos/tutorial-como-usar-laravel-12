@@ -14,7 +14,7 @@
 
         <x-alert />
 
-        <form class="pb-3 grid xl:grid-cols-5 md:grid-cols-2 gap-2 items-end" action="{{ route('user.import-csv-users') }}" method="POST" enctype="multipart/form-data">
+        <form class="pb-3 grid md:grid-cols-2 gap-2 items-end" action="{{ route('user.import-csv-users') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label class="form-input cursor-pointer flex items-center justify-center bg-white text-gray-700 hover:bg-blue-50">
