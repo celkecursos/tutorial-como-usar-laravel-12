@@ -297,6 +297,21 @@ npm install axios@latest
 # MAIL_FROM_NAME="${APP_NAME}"
 ```
 
+Criar o job.
+```
+php artisan make:job ImportCsvJob
+```
+
+Instalar a biblioteca para processar o arquivo gradativamente.
+```
+composer require league/csv
+```
+
+Executar o Job.
+```
+php artisan queue:work
+```
+
 ## Instalar o Node.js no servidor.
 
 Atualizar a lista de pacotes disponíveis.
