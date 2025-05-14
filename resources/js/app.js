@@ -1,5 +1,23 @@
 import './bootstrap';
 
+// Importar o jQuery
+import $ from 'jquery';
+
+// Importar a biblioteca do editor Summernote
+import 'summernote/dist/summernote-lite';
+import 'summernote/dist/summernote-lite.css';
+
+// Expor o jQuery no escopo global e tornar acessível globalmente.
+window.$ = window.jQuery = $;
+
+// Função para carregar o editor
+$(function () {
+    $('#summernote').summernote({
+        height: 150,
+    });
+});
+
+// Alerta para confirmar a exclusão
 window.confirmDelete = function (id) {
     Swal.fire({
         title: "Tem certeza?",

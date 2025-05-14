@@ -78,7 +78,8 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password
+                'password' => $request->password,
+                'description' => $request->description,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
@@ -106,6 +107,7 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
+                'description' => $request->description,
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso

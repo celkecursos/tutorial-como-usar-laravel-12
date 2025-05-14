@@ -48,6 +48,10 @@
                     <span class="font-bold">Editado em: </span>
                     <span>{{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y H:i:s') }}</span>
                 </div>
+                <div class="mb-1">
+                    <span class="font-bold">Descrição: </span>
+                    <span>{!! $user->description !!}</span>
+                </div>
             </div>
         </div>
     </div>

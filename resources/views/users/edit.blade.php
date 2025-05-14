@@ -28,6 +28,11 @@
                     placeholder="Melhor e-mail do usuário" value="{{ old('email', $user->email) }}">
             </div>
 
+            <div class="mb-4">
+                <label for="description" class="form-label">Descrição:</label>
+                <textarea name="description" id="summernote" class="form-input">{{ old('description', $user->description) }}</textarea>
+            </div>
+
             <button type="submit" class="btn-warning">Salvar</button>
         </form>
     </div>

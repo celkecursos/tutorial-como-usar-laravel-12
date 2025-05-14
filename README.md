@@ -312,6 +312,11 @@ Executar o Job.
 php artisan queue:work
 ```
 
+Instalar a biblioteca com o editor Summernote e o jQuery.
+```
+npm install summernote jquery
+```
+
 ## Instalar o Node.js no servidor.
 
 Atualizar a lista de pacotes disponíveis.
