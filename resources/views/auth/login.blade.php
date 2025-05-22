@@ -23,7 +23,7 @@
 
         <!-- Link para recuperação de senha e botão de login -->
         <div class="btn-group-login">
-            <a href="#" class="link-login">Esqueceu a senha?</a>
+            <a href="{{ route('password.request') }}" class="link-login">Esqueceu a senha?</a>
             <button type="submit" class="btn-primary-md">Acessar</button>
         </div>
 

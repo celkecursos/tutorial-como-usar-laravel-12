@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ImportCSVUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,14 @@ Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.proc
 
 // Logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Solicitar link para resetar senha
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Formulário para redefinir a senha com o token
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showRequestForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
 
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function () {
