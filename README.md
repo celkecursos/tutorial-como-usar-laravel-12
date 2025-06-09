@@ -430,6 +430,34 @@ php artisan make:mail NomeDaClasse
 php artisan make:mail UserPdfMail
 ```
 
+## Criar CRON
+
+Abrir o arquivo para criar um cron diretamente via terminal (SSH) na VPS.
+```
+crontab -e
+```
+
+Criar CRON para ser executado a cada minuto
+```
+* * * * * /usr/bin/php8.2 /home/user/htdocs/srv566492.hstgr.cloud/public/script.php
+```
+
+Intervalo de tempo usado no cron.
+```
+* * * * * comando
+│ │ │ │ │
+│ │ │ │ └── Dia da semana (0-7) [0 e 7 = Domingo]
+│ │ │ └──── Mês (1-12)
+│ │ └────── Dia do mês (1-31)
+│ └──────── Hora (0-23)
+└────────── Minuto (0-59)
+```
+
+Reiniciar o serviço de cron.
+```
+sudo service cron restart
+```
+
 ## Como enviar o projeto para o GitHub.
 
 Inicializar um novo repositorio GIT.
