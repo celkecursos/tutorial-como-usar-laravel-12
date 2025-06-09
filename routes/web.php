@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\GenerateUserController;
 use App\Http\Controllers\ImportCSVUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,9 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 // Formulário para redefinir a senha com o token
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showRequestForm'])->name('password.reset');
 Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
+
+// Cadastrar usuários com dados fake
+Route::get('/generate-user', [GenerateUserController::class, 'index'])->name('generate-user');
 
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function () {
