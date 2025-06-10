@@ -392,6 +392,11 @@ Executar as migration para criar a base de dados e as tabelas.
 php artisan migrate
 ```
 
+Remover todas as tabelas do banco de dados e executar novamente todas as migrations e as seeders para cadastrar registro de teste.
+```
+php artisan migrate:fresh --seed
+```
+
 Instalar as dependências do Node.js.
 ```
 npm install
@@ -430,7 +435,39 @@ php artisan make:mail NomeDaClasse
 php artisan make:mail UserPdfMail
 ```
 
-## Criar CRON
+## Criar CRON para enviar e-mail de aniversário
+
+Criar o console responsável por recuperar os aniversariantes e enviar o e-mail.
+```
+php artisan make:command SendBirthdayEmail
+```
+
+Criar a classe para definir e montar o conteúdo de um e-mail de aniversário.
+```
+php artisan make:mail BirthdayEmail
+```
+
+Criar a view com o conteúdo do e-mail.
+```
+php artisan make:view emails.birthday
+```
+
+- Agendar o comando no routes/console.php.
+
+Testar os agendamentos.
+```
+php artisan schedule:run
+```
+
+Ver todos os comandos agendados.
+```
+php artisan schedule:list
+```
+
+
+
+
+
 
 Abrir o arquivo para criar um cron diretamente via terminal (SSH) na VPS.
 ```

@@ -31,6 +31,11 @@
             </div>
 
             <div class="mb-4">
+                <label for="date_of_birth" class="form-label">Data de Nascimento:</label>
+                <input type="date" name="date_of_birth" id="date_of_birth" class="form-input" value="{{ old('date_of_birth') }}">
+            </div>
+
+            <div class="mb-4">
                 <label for="description" class="form-label">Descrição:</label>
                 <textarea name="description" id="summernote" class="form-input">{{ old('description') }}</textarea>
             </div>
