@@ -464,11 +464,6 @@ Ver todos os comandos agendados.
 php artisan schedule:list
 ```
 
-
-
-
-
-
 Abrir o arquivo para criar um cron diretamente via terminal (SSH) na VPS.
 ```
 crontab -e
@@ -476,7 +471,7 @@ crontab -e
 
 Criar CRON para ser executado a cada minuto
 ```
-* * * * * /usr/bin/php8.2 /home/user/htdocs/srv566492.hstgr.cloud/public/script.php
+* * * * * cd /home/user/htdocs/srv566492.hstgr.cloud && /usr/bin/php8.2 artisan schedule:run >> /dev/null 2>&1
 ```
 
 Intervalo de tempo usado no cron.
