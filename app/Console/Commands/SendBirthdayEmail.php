@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendBirthdayEmailJob;
 use App\Mail\BirthdayEmail;
 use App\Models\User;
 use Carbon\Carbon;
@@ -38,9 +39,12 @@ class SendBirthdayEmail extends Command
             ->get();
 
         // Laço de repetição para ler os registros retornado do banco de dados
-        foreach ($users as $user) {
-            Mail::to($user->email)->send(new BirthdayEmail($user));
-            $this->info("E-mail enviado para: {$user->name}");
+        foreach ($users as $index => $user) {
+            // Mail::to($user->email)->send(new BirthdayEmail($user));
+            // $this->info("E-mail enviado para: {$user->name}");
+            dispatch(new SendBirthdayEmailJob($user))
+                ->delay(now()->addSeconds($index * 10)); // atrasa 10s entre cada job;
+            $this->info("Job de e-mail enfileirado para: {$user->name}");
         }
 
         return Command::SUCCESS;
