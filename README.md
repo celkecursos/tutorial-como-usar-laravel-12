@@ -495,6 +495,11 @@ Criar o JOB para enviar e-mail de aniversário.
 php artisan make:job SendBirthdayEmailJob
 ```
 
+No arquivo .env definir corretamente a fila.
+```
+QUEUE_CONNECTION=database
+```
+
 Iniciar o processamento das filas (queues) no servidor local.
 ```
 php artisan queue:work
@@ -533,7 +538,7 @@ redirect_stderr=true
 stdout_logfile=/home/user/htdocs/srv566492.hstgr.cloud/storage/logs/laravel-worker.log
 ```
 
-Detecta novas configurações do supervisor.
+Detecta novas configurações do supervisor. Executar sempre após alteração no arquivo laravel-worker.conf.
 ```
 sudo supervisorctl reread
 ```
@@ -546,6 +551,21 @@ sudo supervisorctl update
 Iniciar o processo laravel-worker.
 ```
 sudo supervisorctl start laravel-worker:*
+```
+
+Reiniciar Nginx.
+```
+sudo systemctl restart nginx
+```
+
+Limpar a fila após deploys que mudam jobs.
+```
+php artisan queue:clear
+```
+
+Reiniciar os workers após alteração no código que envolva jobs ou models.
+```
+php artisan queue:restart
 ```
 
 ## Como enviar o projeto para o GitHub.
