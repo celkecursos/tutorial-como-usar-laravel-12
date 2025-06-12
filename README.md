@@ -435,7 +435,7 @@ php artisan make:mail NomeDaClasse
 php artisan make:mail UserPdfMail
 ```
 
-## Criar CRON para enviar e-mail de aniversário
+## Criar CRON e JOB para enviar e-mail de aniversário
 
 Criar o console responsável por recuperar os aniversariantes e enviar o e-mail.
 ```
@@ -489,6 +489,13 @@ Reiniciar o serviço de cron.
 ```
 sudo service cron restart
 ```
+
+Criar o JOB para enviar e-mail de aniversário.
+```
+php artisan make:job SendBirthdayEmailJob
+```
+
+php artisan queue:work
 
 ## Como enviar o projeto para o GitHub.
 
