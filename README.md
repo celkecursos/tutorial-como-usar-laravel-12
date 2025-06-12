@@ -495,7 +495,54 @@ Criar o JOB para enviar e-mail de aniversário.
 php artisan make:job SendBirthdayEmailJob
 ```
 
+Iniciar o processamento das filas (queues).
+```
 php artisan queue:work
+```
+
+Atualizar a lista de pacotes disponíveis.
+```
+sudo apt update
+```
+
+Instalar o Supervisor para manter o worker sempre rodando.
+```
+sudo apt install supervisor
+```
+
+Criar o arquivo de configuração do supervisor.
+```
+sudo nano /etc/supervisor/conf.d/laravel-worker.conf
+```
+
+Configuração do supervisor.
+```
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=/usr/bin/php8.2 /home/user/htdocs/srv566492.hstgr.cloud/artisan queue:work --sleep=3 --tries=3
+autostart=true
+autorestart=true
+user=user
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/home/user/htdocs/srv566492.hstgr.cloud/storage/logs/laravel-worker.log
+```
+
+Detecta novas configurações do supervisor.
+```
+sudo supervisorctl reread
+```
+
+Aplicar as mudanças detectadas no reread.
+```
+sudo supervisorctl update
+```
+
+Iniciar o processo laravel-worker.
+```
+sudo supervisorctl start laravel-worker:*
+```
+
 
 ## Como enviar o projeto para o GitHub.
 
