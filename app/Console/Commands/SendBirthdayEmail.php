@@ -42,8 +42,7 @@ class SendBirthdayEmail extends Command
         foreach ($users as $index => $user) {
             // Mail::to($user->email)->send(new BirthdayEmail($user));
             // $this->info("E-mail enviado para: {$user->name}");
-            dispatch(new SendBirthdayEmailJob($user))
-                ->delay(now()->addSeconds($index * 10)); // atrasa 10s entre cada job;
+            dispatch(new SendBirthdayEmailJob($user))->delay(now()->addSeconds($index * 10)); // atrasa 10s entre cada job;
             $this->info("Job de e-mail enfileirado para: {$user->name}");
         }
 
