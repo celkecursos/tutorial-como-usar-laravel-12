@@ -4,10 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\GenerateUserController;
 use App\Http\Controllers\ImportCSVUserController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+// Tela do site
+Route::get('/', [SiteController::class, 'home'])->name('home');
+
+Route::get('/dashboard', function () {
     return view('welcome');
 })->name('dashboard');
 
@@ -54,4 +58,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/generate-csv-user', [UserController::class, 'generateCSVUsers'])->name('user.generate-csv-users');
 
     Route::post('/import-csv-user', [ImportCSVUserController::class, 'importCSVUsers'])->name('user.import-csv-users');
+
+    // Gerenciar o conteúdo do site
+    Route::get('/edit-site-home', [SiteController::class, 'edit'])->name('site-home.edit');
+    Route::put('/update-site-home', [SiteController::class, 'update'])->name('site-home.update');
+
 });
